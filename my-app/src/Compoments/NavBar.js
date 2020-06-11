@@ -38,8 +38,14 @@ function MyNavbar(props) {
                 <Nav className="mr-auto">
                     {/* 把Nav.Link當作NavLink來使用 */}
                     {/* 記得首頁`/`要加exact作精確比對，不然都會一直點亮 */}
-                    <Nav.Link as={NavLink} to="/OrderList" exact>
+                    <Nav.Link as={NavLink} to="/OrderList" >
                         訂單列表
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/CartList" >
+                        購物流程
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/CheckOutPage" >
+                        購物流程
                   </Nav.Link>
                 </Nav>
                 <Form inline>{displayButton}</Form>

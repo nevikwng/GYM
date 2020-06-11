@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/OrdessrList.css'
+import '../styles/OrdessrList.scss'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { FaHome } from 'react-icons/fa';
 
@@ -18,10 +18,7 @@ const OrderList = () => {
                     <h3>訂單查詢</h3>
                 </div>
             </div>
-
             <div className="container">
-                <div id="main">
-
                     <div className="article">
                         <ul className="menu">
                             <Link to="/OrderList"> <li>全部訂單</li></Link>
@@ -29,10 +26,7 @@ const OrderList = () => {
                             <Link to="/"><li>完成</li></Link>
                             <Link to="/"><li>取消</li></Link>
                         </ul>
-
                         <input type="search" className="search" placeholder="您可以透過訂單編號及商品名稱搜尋"></input>
-
-
                         <div className="wrap">
                             <ul className="wrap-ul">
                                 <li>訂單編號</li>
@@ -62,7 +56,6 @@ const OrderList = () => {
                                 <li><img src="//www.orbis.com.tw/assets/default/i/icon-delete.gif" alt="取消" /></li>
                             </ul>
                         </div>
-                      
                         <div className="notice-list">
                             <ul className="notice-list-ul">
                             <span className="article-caption-list">注意事項</span><br/>
@@ -73,14 +66,10 @@ const OrderList = () => {
                             </ul>
                         </div>
                     </div>
-
                 </div>
-
-            </div >
             <footer className="footer"></footer>
         </>
     )
-
 }
 
 

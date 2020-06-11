@@ -5,16 +5,23 @@ import './App.css';
 //
 import NavBar from './Compoments/NavBar'
 import OrderList from './Compoments/OrderList'
-
-
+import CartList from './Compoments/CartList'
+import CheckOutPage from './Compoments/CheckOutPage'
+ 
 function App() {
   return (
     <Router>
       <>
         <NavBar />
         <Switch>
-          <Route exact path="/OrderList">
+          <Route  path="/OrderList">
             <OrderList />
+          </Route>
+          <Route  path="/CartList">
+            <CartList />
+          </Route>
+          <Route  path="/CheckOutPage">
+            <CheckOutPage />
           </Route>
         </Switch>
 

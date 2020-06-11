@@ -1,0 +1,7 @@
+@import './CartList';
+
+.content-list-detail{
+   @extend .content-wrap-ul;
+   grid-template-columns: 1fr;
+   text-align: left;
+}

@@ -1,6 +1,7 @@
 .container {
   width: 1260px;
   min-height: 100%;
+  margin: 0 auto;
 }
 #main {
   min-height: 800px;
@@ -15,32 +16,12 @@
   margin-top: 15px;
   padding: 5px;
   border-radius: 7pt;
-  flex: 3 1 80%;
+  flex: 3 1 100%;
   order: 2;
   display: flex;
   justify-content: start;
   flex-direction: column;
   align-items: center;
-}
-
-.nav {
-  margin: 5px;
-  padding: 5px;
-  margin-top: 89px;
-  flex: 1 6 15%;
-  order: 1;
-  background-color: #e0e0e0;
-}
-.nav ul {
-  width: 100%;
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: 0;
-  padding: 0;
 }
 
 .footer {
@@ -54,15 +35,23 @@
 .menu {
   list-style: none;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 10px;
-  width: 100%;
+  width: 90%;
+  position: relative;
+  padding: 0;
 }
 .menu li {
   padding: 5px 10px;
+  margin: 0 32px;
 }
 .menu li:hover {
-  background-color: #ffcc00;
+  color: red;
+  text-decoration: none;
+  background-color: gold;
+  border-radius: 7px;
+}
+.menu li:link {
 }
 figure {
   width: 100px;
@@ -92,41 +81,11 @@ figure {
 .notice-list > ul {
   list-style: none;
 }
-
-.articleTable {
-  border: 1px solid #000;
-  font-family: 微軟正黑體;
-  font-size: 16px;
-  width: 90%;
-  height: 50px;
-  text-align: center;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-td {
-  border: 1px solid #000;
-  padding: 5px;
-}
-th {
-  background-color: #b2b2b2;
-  border-right: 1px solid #000;
-}
-
-.nav li {
-  width: 90%;
-  padding: 10px;
-  text-align: center;
-}
-.nav li:hover {
-  background-color: #ffcc00;
-}
 .article-caption {
   width: 90%;
 }
-
 .article-caption span {
   background-color: #5c5a5a;
-  margin: 8px;
   color: #fff;
   padding: 0 10px;
 }
@@ -135,9 +94,86 @@ th {
   text-align: left;
   margin: 0;
   height: 5px;
-  line-height: 50px;
   padding: 0 10px;
+  line-height: 50px;
   background-color: #5c5a5a;
   color: #fff;
   font-size: 24px;
+}
+.notice-list-ul li  span{
+
+  font-size: 40px;
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+
+  color: rgb(99, 59, 97);
+
+}
+.wrap {
+  width: 90%;
+  margin: 30px auto;
+  padding: 0;
+  text-align: center;
+}
+.wrap-ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid #f2f3f5;
+  margin: 20px 0px;
+  padding-bottom: 20px;
+}
+.title {
+  width: 100%;
+  background-color: #505763;
+  height: 135px;
+  color: darkgray;
+}
+.title-cotainer {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.title-ol {
+  list-style: none;
+  display: flex;
+  font-size: 14px;
+  text-align: left;
+  padding: 0;
+  padding-top: 20px;
+  padding-left: 40px;
+  margin: 0;
+}
+.title-ol li {
+  margin-left: 10px;
+}
+.icon {
+  font: 1.5em sans-serif;
+  text-align: top;
+  padding: 0;
+}
+.title-cotainer h3 {
+  padding-left: 50px;
+  width: 80%;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.287;
+  margin: 0;
+}
+
+.menu :before,
+.menu :after {
+  content: "";
+  position: absolute;
+  top: 55%;
+  background: #aaa;
+  width: 23%;
+  height: 1px;
+}
+.menu :before {
+  left: 0%;
+}
+.menu :after {
+  right: 0%;
 }

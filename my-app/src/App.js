@@ -7,26 +7,13 @@ import NavBar from './Compoments/NavBar'
 import OrderList from './Compoments/OrderList'
 import CartList from './Compoments/CartList'
 import CheckOutPage from './Compoments/CheckOutPage'
- 
+import Leacflet from './Compoments/React-Leaflet'
+
 function App() {
   return (
-    <Router>
       <>
-        <NavBar />
-        <Switch>
-          <Route  path="/OrderList">
-            <OrderList />
-          </Route>
-          <Route  path="/CartList">
-            <CartList />
-          </Route>
-          <Route  path="/CheckOutPage">
-            <CheckOutPage />
-          </Route>
-        </Switch>
-
+        <Leacflet />
       </>
-    </Router>
   );
 }
 

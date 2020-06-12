@@ -29,7 +29,9 @@ const CartList = () => {
                 </ul>
                 <div className="content">
                     <div className="content-wrap">
-                        <span className="content-list">購物車清單</span>
+                        <h3>CartList</h3>
+                        <span className="content-Cartlist-title">CartList Detail</span>
+
                         <ul className="content-wrap-ul">
                             <li>
                                 <img className="objectFit" src="https://cdn.pixabay.com/photo/2017/10/18/06/17/primal-future-2863076_960_720.jpg"></img></li>
@@ -59,7 +61,7 @@ const CartList = () => {
                                 <a className="icon" href="/"><FaStar /></a>
                             </ul>                        </ul>
                         <div className="fav-content-wrap">
-                            <span className="content-list">願望清單</span>
+                            <span className="content-Cartlist-title">Favorite Detail</span>
                             <ul className="fav-wrap-ul">
                                 <li>
                                     <img className="objectFit" src="https://cdn.pixabay.com/photo/2017/10/18/06/17/primal-future-2863076_960_720.jpg"></img></li>
@@ -72,14 +74,15 @@ const CartList = () => {
                             </ul>
                         </div>
                     </div>
-                        <div className="content-right">
-                            <div>總計：</div>
-                            <h3>$342</h3>
-                            <div>折扣:$200</div>
-                            <div>總計：$142</div>
-                            <button>結帳</button>
-                            <input type="text" placeholder="輸入優惠券"></input>
-                        </div>
+                    <div className="content-right">
+                        <div>總計：</div>
+                        <h3>$342</h3>
+                        <div>折扣：$200</div>
+                        <div>總計：$142</div>
+                        <input type="text" placeholder="輸入優惠券"></input>
+
+                        <button>結帳</button>
+                    </div>
                 </div>
             </div>
             <footer className="footer"></footer>

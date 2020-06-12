@@ -130,6 +130,7 @@
   display: grid;
   margin-left: 30px;
   padding-left: 10px;
+  margin-top: 110px;
 }
 .content-right h3 {
   color: powderblue;
@@ -137,7 +138,7 @@
 
 .content-right button {
   color: #fff;
-  background-color: #ffcc00;
+  background-color: #4f4f4f;
   border: 1px solid transparent;
   cursor: pointer;
   padding: 15px;
@@ -166,4 +167,12 @@
 
 img {
   cursor: pointer;
+}
+
+.content-Cartlist-title {
+  display: block;
+  text-align: left;
+  font-size: 26px;
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 15px;
 }

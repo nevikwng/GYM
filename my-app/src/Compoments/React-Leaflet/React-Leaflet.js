@@ -1,4 +1,4 @@
-import '../styles/React-Leaflet.scss'
+import './React-Leaflet.scss'
 
 import React from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";

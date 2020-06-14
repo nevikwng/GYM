@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/CheckOutPage.scss'
+import './CheckOutPage.scss'
 import { FaRegListAlt } from 'react-icons/fa';
 
 const CheckOutPage = () => {

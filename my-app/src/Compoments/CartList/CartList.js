@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/CartList.scss'
+import './CartList.scss'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { FaRegListAlt } from 'react-icons/fa';
 import { FaStar } from 'react-icons/fa';

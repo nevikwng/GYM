@@ -16,10 +16,8 @@ async function DelToSever(orderId) {
     window.location.reload()
 }
 const OrderListDetail = () => {
-
     const [data, setData] = useState({ rows: [] });
     const [search, setSearch] = useState();
-
     useEffect(() => {
         const FetchData = async () => {
             const result = await axios(
@@ -29,12 +27,9 @@ const OrderListDetail = () => {
         }
         FetchData();
     }, []);
-
-
     return (
         <>
             <input type="search" className="search" onChange={(event) => setSearch(event.target.value)} placeholder="您可以透過訂單編號搜尋"></input>
-
             <div className="wrap">
                 <ul className="wrap-ul">
                     <li>訂單編號</li>
@@ -61,9 +56,9 @@ const OrderListDetail = () => {
                         <li>{item.created_at}</li>
                         <li>$ {item.Total}</li>
                         <li>{item.PayMentMethod}</li>
-                        {item.OrderStatus == 1 ? <li>交易進行中</li> : <li> 交易完成 </li>}
+                        {item.OrderStatus == 1 ? <li>交易進行中</li> : item.OrderStatus == 2 ? <li> 交易取消 </li> : <li>交易完成</li>}
                         <li><a href="/service">我要詢問</a></li>
-                        {item.OrderStatus == 1 ? <li><a className="icon" onClick={() => { DelToSever(item.orderId) }}><FaTrashAlt /></a></li> : <li> 交易完成如需退貨請洽客服中心</li>}
+                        {item.OrderStatus == 1 ? <li><a className="icon" onClick={() => { DelToSever(item.orderId) }}><FaTrashAlt /></a></li> : item.OrderStatus == 2 ? <li> 交易取消</li> : <li> 交易完成如需退貨請洽客服中心</li>}
                     </ul>
                 ))}
             </div>

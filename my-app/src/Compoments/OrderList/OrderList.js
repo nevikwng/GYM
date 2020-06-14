@@ -12,9 +12,9 @@ const OrderList = () => {
                 <div className="title-cotainer">
                     <ol className="title-ol">
                         <li className="icon"><FaHome /></li>
-                        <li>訂單查詢</li>
+                        <li>訂單紀錄</li>
                     </ol>
-                    <h3>訂單查詢</h3>
+                    <h3>訂單紀錄</h3>
                 </div>
             </div>
             <div className="container">

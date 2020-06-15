@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { FaTrashAlt } from 'react-icons/fa';
+import { IoIosAddCircleOutline }  from "react-icons/io";
 
+import { withRouter } from 'react-router-dom';
 async function DelToSever(orderId) {
     // 注意資料格式要設定，伺服器才知道是json格式
     axios.post(`http://localhost:3000/address-book/api/del/${orderId}`, {
@@ -11,11 +13,11 @@ async function DelToSever(orderId) {
             Accept: 'application/json',
             'Content-Type': 'application/json',
         }),
-        params: { orderId: orderId },
+        data: { orderId: orderId },
     })
     window.location.reload()
 }
-const OrderListDetail = () => {
+const OrderListDetail = (props) => {
     const [data, setData] = useState({ rows: [] });
     const [search, setSearch] = useState('');
     useEffect(() => {
@@ -37,7 +39,7 @@ const OrderListDetail = () => {
                     <li>應付金額</li>
                     <li>付款方式</li>
                     <li>訂單狀態</li>
-                    <li>客服中心</li>
+                    <li>訂單詳情</li>
                     <li>取消</li>
                 </ul>
                 {search ? data.rows.filter(item => item.orderId == search || item.PayMentMethod.match(search)).map((item, index) => (
@@ -57,8 +59,8 @@ const OrderListDetail = () => {
                         <li>$ {item.Total}</li>
                         <li>{item.PayMentMethod}</li>
                         {item.OrderStatus == 1 ? <li>交易進行中</li> : item.OrderStatus == 2 ? <li> 交易取消 </li> : <li>交易完成</li>}
-                        <li><a href="/service">我要詢問</a></li>
-                        {item.OrderStatus == 1 ? <li><a className="icon" onClick={() => { DelToSever(item.orderId) }}><FaTrashAlt /></a></li> : item.OrderStatus == 2 ? <li> 交易取消</li> : <li> 交易完成如需退貨請洽客服中心</li>}
+                        <li><IoIosAddCircleOutline /></li>
+                        {item.OrderStatus == 1 ? <li><a className="icon" onClick={() => { DelToSever(item.orderId) }}><FaTrashAlt /></a></li> : item.OrderStatus == 2 ? <li> 交易取消</li> : <li> 交易完成如需退貨請洽<span className="service" onClick={() => props.history.push('/service')}>客服中心</span></li>}
                     </ul>
                 ))}
             </div>
@@ -76,4 +78,4 @@ const OrderListDetail = () => {
     )
 }
 
-export default OrderListDetail;
+export default withRouter(OrderListDetail);

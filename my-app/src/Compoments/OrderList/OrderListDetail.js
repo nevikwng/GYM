@@ -22,9 +22,6 @@ async function DelToSever(orderId) {
 }
 
 
-
-
-
 const OrderListDetail = (props) => {
     const [data, setData] = useState({ rows: [] });
     const [search, setSearch] = useState('');
@@ -69,7 +66,7 @@ const OrderListDetail = (props) => {
     }, [hiddenID]);
     return (
         <>
-           
+
             <input type="search" className="search" onChange={(event) => setSearch(event.target.value)} placeholder="您可以透過訂單編號及付款方式搜尋"></input>
             <div className="wrap">
                 <ul className="wrap-ul">
@@ -100,7 +97,7 @@ const OrderListDetail = (props) => {
                             <li>{item.PayMentMethod}</li>
                             {item.OrderStatus == 1 ? <li>交易進行中</li> : item.OrderStatus == 2 ? <li> 交易取消 </li> : <li>交易完成</li>}
                             <li className="productdetail">
-                                <button value={item.orderId} onClick={(e) => (setHidden(!hidden),ListToSever(item.orderId), setValue(e.target.value))}>click</button>
+                                <button value={item.orderId} onClick={(e) => (setHidden(!hidden), ListToSever(item.orderId), setValue(e.target.value))}>click</button>
                             </li>
                             {item.OrderStatus == 1 ? <li><a className="icon" onClick={() => { DelToSever(item.orderId) }}><FaTrashAlt /></a></li> : item.OrderStatus == 2 ? <li> 交易取消</li> : <li> 交易完成如需退貨請洽<span className="service" onClick={() => props.history.push('/service')}>客服中心</span></li>}
                         </ul>

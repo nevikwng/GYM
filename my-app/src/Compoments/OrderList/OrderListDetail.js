@@ -29,13 +29,17 @@ const OrderListDetail = (props) => {
     const [data, setData] = useState({ rows: [] });
     const [search, setSearch] = useState('');
     const [hidden, setHidden] = useState(true);
-    const [hiddenID, sethiddenID] = useState({ rows: [] });
+    const [hiddenID, sethiddenID] = useState();
+    const [Value, setValue] = useState();
 
+
+    // console.log(props)
 
     const ListToSever = async (orderId) => {
         const result = await axios(
             'http://localhost:3000/address-book/api/OrderList');
-        sethiddenID(result.data.rows.filter((i) => (i.sld == '92')))
+        sethiddenID(result.data.rows.filter((i) => (i.orderId == orderId)))
+
     }
 
     useEffect(() => {
@@ -48,14 +52,14 @@ const OrderListDetail = (props) => {
     }, []);
 
 
-    useEffect(() => {
-        const ListToSever = async (orderId) => {
-            const result = await axios(
-                `http://localhost:3000/address-book/api/test`);
-            sethiddenID(result.data.results.filter((i) => (i.sld == orderId)))
-        }
-        ListToSever();
-    }, []);
+    // useEffect(() => {
+    //     const ListToSever = async (orderId) => {
+    //         const result = await axios(
+    //             `http://localhost:3000/address-book/api/OrderList`);
+    //         sethiddenID(result.data.rows.filter((i) => (i.orderId == orderId)))
+    //     }
+    //     ListToSever();
+    // }, [hidden]);
 
 
     useEffect(() => {
@@ -65,6 +69,7 @@ const OrderListDetail = (props) => {
     }, [hiddenID]);
     return (
         <>
+           
             <input type="search" className="search" onChange={(event) => setSearch(event.target.value)} placeholder="您可以透過訂單編號及付款方式搜尋"></input>
             <div className="wrap">
                 <ul className="wrap-ul">
@@ -95,28 +100,22 @@ const OrderListDetail = (props) => {
                             <li>{item.PayMentMethod}</li>
                             {item.OrderStatus == 1 ? <li>交易進行中</li> : item.OrderStatus == 2 ? <li> 交易取消 </li> : <li>交易完成</li>}
                             <li className="productdetail">
-                                <button onClick={() => { setHidden(!hidden) }}>click</button>
+                                <button value={item.orderId} onClick={(e) => (setHidden(!hidden),ListToSever(item.orderId), setValue(e.target.value))}>click</button>
                             </li>
                             {item.OrderStatus == 1 ? <li><a className="icon" onClick={() => { DelToSever(item.orderId) }}><FaTrashAlt /></a></li> : item.OrderStatus == 2 ? <li> 交易取消</li> : <li> 交易完成如需退貨請洽<span className="service" onClick={() => props.history.push('/service')}>客服中心</span></li>}
                         </ul>
-                        {hidden ? (
+                        {hidden && Value == item.orderId ? (
                             <div className="wrap-ul-hidden-container">
                                 <ul className="wrap-ul-hidden-title">
-                                    <li>姓名</li>
-                                    <li>運送地址</li>
-                                    <li>手機</li>
-                                    <li>Email</li>
+
                                 </ul>
-                                <ul className="wrap-ul-hidden">
-                                    <li><div className="img-fit">
-                                        <img className="objectFit" src="https://cdn.pixabay.com/photo/2017/10/18/06/17/primal-future-2863076_960_720.jpg">
-                                        </img>
-                                    </div></li>
-                                    <li>THE Whey 尖端乳清蛋白 獨特三合一配方 營養補劑全新標準</li>
-                                    <li>5</li>
-                                    <li>Cookie</li>
-                                  
-                                </ul>
+                                {hiddenID ? hiddenID.map((item, index) =>
+                                    (<ul className="wrap-ul-hidden">
+                                        <li>{item.orderId}</li>
+                                        <li>{item.Total}</li>
+                                        <li>{item.PayMentMethod}</li>
+                                        <li>{item.PayMentMethod}</li>
+                                    </ul>)) : ''}
                                 <ul className="wrap-ul-hidden-title">
                                     <li>姓名</li>
                                     <li>運送地址</li>

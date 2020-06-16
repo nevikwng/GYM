@@ -171,5 +171,45 @@ figure {
 .service {
   cursor: pointer;
   color: blue;
- 
+}
+.productdetail {
+  cursor: pointer;
+}
+.wrap-ul-hidden-title {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-left: 1px dashed #afb1b6;
+  border-right: 1px dashed #afb1b6;
+  border-top: 1px dashed #afb1b6;
+  padding: 10px;
+}
+
+.wrap-ul-hidden {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-left: 1px dashed #afb1b6;
+  border-right: 1px dashed #afb1b6;
+  border-bottom: 1px dashed #afb1b6;
+  padding: 0;
+  padding-bottom: 12px;
+  padding: 10px;
+
+}
+
+.img-fit {
+  width: 150px;
+  height: 100px;
+  margin-left: 30px;
+}
+.wrap-ul-hidden-container {
+  display: grid;
+  transition: 0.88s;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #f2f3f5;
+
+  justify-content: center;
+  align-content: center;
 }

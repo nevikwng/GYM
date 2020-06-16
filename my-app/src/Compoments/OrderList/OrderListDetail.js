@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { FaTrashAlt } from 'react-icons/fa';
-import { IoIosAddCircleOutline }  from "react-icons/io";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 import { withRouter } from 'react-router-dom';
+
+
+
 async function DelToSever(orderId) {
     // 注意資料格式要設定，伺服器才知道是json格式
     axios.post(`http://localhost:3000/address-book/api/del/${orderId}`, {
@@ -17,18 +20,49 @@ async function DelToSever(orderId) {
     })
     window.location.reload()
 }
+
+
+
+
+
 const OrderListDetail = (props) => {
     const [data, setData] = useState({ rows: [] });
     const [search, setSearch] = useState('');
+    const [hidden, setHidden] = useState(true);
+    const [hiddenID, sethiddenID] = useState({ rows: [] });
+
+
+    const ListToSever = async (orderId) => {
+        const result = await axios(
+            'http://localhost:3000/address-book/api/OrderList');
+        sethiddenID(result.data.rows.filter((i) => (i.sld == '92')))
+    }
+
     useEffect(() => {
         const FetchData = async () => {
             const result = await axios(
                 'http://localhost:3000/address-book/api/OrderList');
-            setData(result.data);
-
+            setData(result.data)
         }
         FetchData();
     }, []);
+
+
+    useEffect(() => {
+        const ListToSever = async (orderId) => {
+            const result = await axios(
+                `http://localhost:3000/address-book/api/test`);
+            sethiddenID(result.data.results.filter((i) => (i.sld == orderId)))
+        }
+        ListToSever();
+    }, []);
+
+
+    useEffect(() => {
+
+        console.log(hiddenID)
+
+    }, [hiddenID]);
     return (
         <>
             <input type="search" className="search" onChange={(event) => setSearch(event.target.value)} placeholder="您可以透過訂單編號及付款方式搜尋"></input>
@@ -42,27 +76,64 @@ const OrderListDetail = (props) => {
                     <li>訂單詳情</li>
                     <li>取消</li>
                 </ul>
-                {search ? data.rows.filter(item => item.orderId == search || item.PayMentMethod.match(search)).map((item, index) => (
+                {search ? data.rows.filter(item => (item.orderId).toString().includes(search) || item.PayMentMethod.match(search)).map((item, index) => (
                     <ul key={index} className="wrap-ul">
                         <li><a href="">{item.orderId}</a></li>
                         <li>{item.created_at}</li>
                         <li>$ {item.Total}</li>
                         <li>{item.PayMentMethod}</li>
                         {item.OrderStatus == 1 ? <li>交易進行中</li> : item.OrderStatus == 2 ? <li> 交易取消 </li> : <li>交易完成</li>}
-                        <li><a href="/service">我要詢問</a></li>
+                        <li className="productdetail"><IoIosAddCircleOutline /></li>
                         {item.OrderStatus == 1 ? <li><a className="icon" onClick={() => { DelToSever(item.orderId) }}><FaTrashAlt /></a></li> : item.OrderStatus == 2 ? <li> 交易取消</li> : <li> 交易完成如需退貨請洽客服中心</li>}
                     </ul>
                 )) : data.rows.map((item, index) => (
-                    <ul key={index} className="wrap-ul">
-                        <li><a href="">{item.orderId}</a></li>
-                        <li>{item.created_at}</li>
-                        <li>$ {item.Total}</li>
-                        <li>{item.PayMentMethod}</li>
-                        {item.OrderStatus == 1 ? <li>交易進行中</li> : item.OrderStatus == 2 ? <li> 交易取消 </li> : <li>交易完成</li>}
-                        <li><IoIosAddCircleOutline /></li>
-                        {item.OrderStatus == 1 ? <li><a className="icon" onClick={() => { DelToSever(item.orderId) }}><FaTrashAlt /></a></li> : item.OrderStatus == 2 ? <li> 交易取消</li> : <li> 交易完成如需退貨請洽<span className="service" onClick={() => props.history.push('/service')}>客服中心</span></li>}
-                    </ul>
-                ))}
+                    <>
+                        <ul key={index} className="wrap-ul">
+                            <li><a href="">{item.orderId}</a></li>
+                            <li>{item.created_at}</li>
+                            <li>$ {item.Total}</li>
+                            <li>{item.PayMentMethod}</li>
+                            {item.OrderStatus == 1 ? <li>交易進行中</li> : item.OrderStatus == 2 ? <li> 交易取消 </li> : <li>交易完成</li>}
+                            <li className="productdetail">
+                                <button onClick={() => { setHidden(!hidden) }}>click</button>
+                            </li>
+                            {item.OrderStatus == 1 ? <li><a className="icon" onClick={() => { DelToSever(item.orderId) }}><FaTrashAlt /></a></li> : item.OrderStatus == 2 ? <li> 交易取消</li> : <li> 交易完成如需退貨請洽<span className="service" onClick={() => props.history.push('/service')}>客服中心</span></li>}
+                        </ul>
+                        {hidden ? (
+                            <div className="wrap-ul-hidden-container">
+                                <ul className="wrap-ul-hidden-title">
+                                    <li>姓名</li>
+                                    <li>運送地址</li>
+                                    <li>手機</li>
+                                    <li>Email</li>
+                                </ul>
+                                <ul className="wrap-ul-hidden">
+                                    <li><div className="img-fit">
+                                        <img className="objectFit" src="https://cdn.pixabay.com/photo/2017/10/18/06/17/primal-future-2863076_960_720.jpg">
+                                        </img>
+                                    </div></li>
+                                    <li>THE Whey 尖端乳清蛋白 獨特三合一配方 營養補劑全新標準</li>
+                                    <li>5</li>
+                                    <li>Cookie</li>
+                                  
+                                </ul>
+                                <ul className="wrap-ul-hidden-title">
+                                    <li>姓名</li>
+                                    <li>運送地址</li>
+                                    <li>手機</li>
+                                    <li>Email</li>
+                                </ul>
+                                <ul className="wrap-ul-hidden"  >
+                                    <li>王帥帥</li>
+                                    <li>天龍國5555號</li>
+                                    <li>0987654321</li>
+                                    <li>cici@gmail.com</li>
+                                </ul>
+                            </div>
+                        ) : ''}
+                    </>
+                ))
+                }
             </div>
             <div className="notice-list">
                 <ul className="notice-list-ul">

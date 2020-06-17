@@ -8,7 +8,7 @@ import city from "../../API/AllData.json";
 async function DelToSever(item) {
     // 注意資料格式要設定，伺服器才知道是json格式
     console.log(item);
-    axios.post(`http://localhost:3000/address-book/api/addCheckOutPage`, {
+    axios.post(`http://localhost:5050/address-book/api/addCheckOutPage`, {
         method: "POST",
         credentials: "include", // 需傳送 Cookie 必須開啟
         headers: new Headers({
